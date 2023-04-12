@@ -6,6 +6,8 @@ if sys.version_info < min_python:
 
 import requests
 import time
+import xml.etree.ElementTree as ET
+import datetime
 
 form_date = str(int(time.time_ns() / 1000000))
 
@@ -30,6 +32,7 @@ payload = {
     "_disslists_WAR_disslistsportlet_exportType": "xml"
 }
 resp = requests.post('https://echa.europa.eu/candidate-list-table', data=payload)
-print(resp.text)
-with open("svhcFetched.utf8txt", 'w', encoding='UTF-8') as f:
-    f.write(resp.text)
+xml_tree = ET.fromstring(resp.text)
+dt = datetime.date.today().strftime("%Y%m%d")
+save_name = "svhc list " + dt + ".xml"
+ET.ElementTree(xml_tree).write(save_name)
