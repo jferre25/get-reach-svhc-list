@@ -6,4 +6,4 @@
 
 ### Considerations
 - If the SVHC list exceeds 1000, then the value should be updated on line 31
-- This script will save the SVHC list in the same folder as itself as an xml
+- This script will save the SVHC list in the same folder as itself as an xml file
